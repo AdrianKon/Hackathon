@@ -87,6 +87,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="News.cs" />
+    <Compile Include="NewsHandler.cs" />
+    <Compile Include="NewsRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
