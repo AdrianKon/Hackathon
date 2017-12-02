@@ -11,5 +11,9 @@ namespace Hackaton_Wpf
         public string Status { get; set; }
         public List<News> Articles { get; set; }
 
+        public NewsRequest()
+        {
+            Articles = new List<News>();
+        }
     }
 }

@@ -1,10 +1,20 @@
 ﻿using System.IO;
+using Hackathon;
+using Hackaton_Wpf;
+
 
 namespace Hackaton_Wpf.Conversation.ConversetionAnswers
 {
     public class ReactionToChos
     {
         public string tag { get; set; }
+        private DBManager dbMenager;
+
+        public ReactionToChos(string tag)
+        {
+            this.tag = tag;
+            dbMenager = DBManager.GetInstance;
+        }
 
         public void react()
         {
@@ -20,7 +30,7 @@ namespace Hackaton_Wpf.Conversation.ConversetionAnswers
             }
         }
 
-        private void add()
+        private void addOrStronger()
         {
            
         }

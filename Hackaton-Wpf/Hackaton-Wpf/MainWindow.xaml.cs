@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hackaton_Wpf.Conversation.Shared;
 
 namespace Hackaton_Wpf
 {
@@ -22,6 +23,8 @@ namespace Hackaton_Wpf
     {
         public MainWindow()
         {
+            NewsHandler nwHandler = new NewsHandler(new List<Tag>());
+            var news = nwHandler.GetNews();
             InitializeComponent();
         }
     }

@@ -40,6 +40,9 @@
     <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Expression.Drawing.3.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -76,8 +79,6 @@
     <Compile Include="Conversation\ConversationMenagerInterface.cs" />
     <Compile Include="Conversation\ConversetionAnswers\ReactionToChos.cs" />
     <Compile Include="Conversation\Shared\Tag.cs" />
-    <Compile Include="Conversation\TempClasses\DataBaseMenager.cs" />
-    <Compile Include="Conversation\TempClasses\DataBaseMenagerIntrerface.cs" />
     <Compile Include="DataBase\BotProfile.cs" />
     <Compile Include="DataBase\DBManager.cs" />
     <Compile Include="DataBase\UserProfile.cs" />
@@ -87,9 +88,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="News.cs" />
-    <Compile Include="NewsHandler.cs" />
-    <Compile Include="NewsRequest.cs" />
+    <Compile Include="NewsAPI\News.cs" />
+    <Compile Include="NewsAPI\NewsHandler.cs" />
+    <Compile Include="NewsAPI\NewsRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
