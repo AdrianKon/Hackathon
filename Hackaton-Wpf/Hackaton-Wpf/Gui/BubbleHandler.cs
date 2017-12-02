@@ -164,7 +164,7 @@ namespace Hackaton_Wpf
             stackPanel.Children.Clear();
 
             this.createBubbleContentEvents(stackPanel,meme.GetRandomMeme(),"");
-            this.stackPanel.MouseLeftButtonDown += showNews;
+            this.stackPanel.MouseLeftButtonUp += showNews;
         }
 
         public void showNews(object sender, MouseButtonEventArgs e)
@@ -175,10 +175,22 @@ namespace Hackaton_Wpf
             tbb.FontSize = 20;
             WeatherAPI.WeatherAPI weatherApi = new WeatherAPI.WeatherAPI("51.127209", "16.851780");
             tbb.Text = "Pogoda: " + weatherApi.WeatherForecast.Currently.Temperature + " st. C," + weatherApi.WeatherForecast.Currently.Summary;
-            stackPanel.Children.Clear();
             stackPanel.Children.Add(tbb);
-            //tbb.MouseLeftButtonDown += chisesHandler3;
+            stackPanel.MouseLeftButtonUp += hand4;
 
+        }
+
+        private void hand4(object sender, MouseButtonEventArgs e)
+        {
+            stackPanel.Children.Clear();
+            this.createBubbleContentEvents(stackPanel, "../../Res/bsod.png", "");
+            this.stackPanel.MouseLeftButtonUp += exit; ;
+        }
+
+        private void exit(object sender, MouseButtonEventArgs e)
+        {
+
+            
         }
     }
 }
