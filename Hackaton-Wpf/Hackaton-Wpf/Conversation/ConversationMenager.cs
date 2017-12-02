@@ -32,12 +32,12 @@ namespace Hackaton_Wpf.Conversation
             if (conversation.answers == null)
                 conversation.answers = new List<AnswerOfFirstLevel>();
 
-            for (int i = 0; i < 4; i++)
+            /*for (int i = 0; i < 4; i++)
             {
                 conversation.answers.Add(
-                        firstLvl[rand.Next(0, firstLvl.Count)].
+                       firstLvl[rand.Next(0, firstLvl.Count)].
                     );
-            }
+            }*/
             
 
 
