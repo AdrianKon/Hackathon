@@ -126,11 +126,8 @@
   <ItemGroup>
     <Resource Include="Res\trollface.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="RandomMeme\Memes\bg1.jpeg" />
-    <Resource Include="RandomMeme\Memes\bg2.jpeg" />
-    <Resource Include="RandomMeme\Memes\bg3.jpeg" />
+    <Folder Include="RandomMeme\Memes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
