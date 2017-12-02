@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiteDB, Version=4.0.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.4.0.0\lib\net40\LiteDB.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Expression.Drawing.3.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
@@ -75,6 +78,9 @@
     <Compile Include="Conversation\Shared\Tag.cs" />
     <Compile Include="Conversation\TempClasses\DataBaseMenager.cs" />
     <Compile Include="Conversation\TempClasses\DataBaseMenagerIntrerface.cs" />
+    <Compile Include="DataBase\BotProfile.cs" />
+    <Compile Include="DataBase\DBManager.cs" />
+    <Compile Include="DataBase\UserProfile.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
