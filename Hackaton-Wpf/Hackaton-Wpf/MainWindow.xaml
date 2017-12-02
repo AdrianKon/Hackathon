@@ -49,11 +49,8 @@
         </Style>
 
     </Window.Resources>
-    <Grid>
-        <Image ToolTip="Hello its me :) " HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="MemFace" Height="120" Width="120" Margin="0,0,10,40">
-            <Image.Source>
-                <BitmapImage UriSource="../trollface.png" />
-            </Image.Source>
+    <Grid >
+        <Image ToolTip=""  ToolTipService.IsEnabled="True" ToolTipService.ShowOnDisabled="True" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="MemeFace" Height="120" Width="120" Margin="0,0,10,40">
         </Image>
     </Grid>
 </Window>

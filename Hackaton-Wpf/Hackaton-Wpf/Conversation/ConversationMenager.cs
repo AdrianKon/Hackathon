@@ -22,7 +22,7 @@ namespace Hackaton_Wpf.Conversation
 
             ConversetionAnswers.Conversation conversation = dataBaseMenager.GetConversations(typeOfConversation)[rand.Next(0, dataBaseMenager.GetConversations(typeOfConversation).Count)];
 
-
+            return null;
         }
     }
 }
