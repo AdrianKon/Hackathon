@@ -21,7 +21,7 @@
             <Setter Property="HasDropShadow" Value="True" />
             <Setter Property="Placement" Value="Top"/>
             <Setter Property="Template" >
-            
+
                 <Setter.Value>
                     <ControlTemplate TargetType="ToolTip">
                         <ed:Callout Name="Border"
@@ -52,5 +52,6 @@
     <Grid>
         <Image ToolTip= "" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="MemeFace" Height="120" Width="120" Margin="0,0,10,40">
         </Image>
+        <Image x:Name="altFace" Source="Res/trollface.png" HorizontalAlignment="Left" Height="123" Margin="135,202,0,0" VerticalAlignment="Top" Width="146"/>
     </Grid>
 </Window>

@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,6 +64,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="KeyLogger\KeyLogger.cs" />
+    <Compile Include="KeyLogger\LoggerDelegate.cs" />
     <Compile Include="RandomMeme\MemeHandler.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -122,11 +125,24 @@
   <ItemGroup>
     <Resource Include="Res\trollface.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="RandomMeme\Memes\bg1.jpeg" />
-    <Resource Include="RandomMeme\Memes\bg2.jpeg" />
-    <Resource Include="RandomMeme\Memes\bg3.jpeg" />
+    <Resource Include="RandomMeme\Memes\a1KjjPR_460s.jpg" />
+    <Resource Include="RandomMeme\Memes\aDz59Bx_460s.jpg" />
+    <Resource Include="RandomMeme\Memes\aZg5KOX_460s.jpg" />
+    <Resource Include="RandomMeme\Memes\condescending-wonka-meme.jpg" />
+    <Resource Include="RandomMeme\Memes\f9a.jpg" />
+    <Resource Include="RandomMeme\Memes\finally-synthetic-watermelon-min.jpg" />
+    <Resource Include="RandomMeme\Memes\finals.jpg" />
+    <Resource Include="RandomMeme\Memes\meme248.jpg" />
+    <Resource Include="RandomMeme\Memes\Meme7.jpg" />
+    <Resource Include="RandomMeme\Memes\putinmeme02.jpg" />
+    <Resource Include="RandomMeme\Memes\thug-life-funny-meme.jpg" />
+    <Resource Include="RandomMeme\Memes\welcome-to-the-internet1.jpg" />
+    <Resource Include="RandomMeme\Memes\welcome_to_the_internet_by_party9999999-d6mjzzs.jpg" />
+    <Resource Include="RandomMeme\Memes\when-i-said-nuke-the-chinese-north-korea-meme-nuclear-weapons.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Meme7.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
