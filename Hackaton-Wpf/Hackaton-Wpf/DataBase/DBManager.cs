@@ -27,11 +27,17 @@ namespace Hackathon
         public void CreateOrUpdateProfile<T>(string fileName,T objectOfProfile)
         {
 
-            using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\"+fileName+".db"))
+            using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\" + fileName + ".db"))
             {
                 var collection = db.GetCollection<T>(fileName);
-
-                collection.Insert(1, objectOfProfile);
+                try
+                {
+                    collection.Insert(1, objectOfProfile);
+                }
+                catch
+                {
+                    ///
+                }
             }
         }
 
