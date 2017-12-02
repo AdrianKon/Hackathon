@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Hackaton_Wpf.Conversation.Shared;
+using Hackaton_Wpf.Conversation;
+using Hackathon;
 
 namespace Hackaton_Wpf.ReactionManagement
 {
@@ -20,6 +23,7 @@ namespace Hackaton_Wpf.ReactionManagement
         {
             this.delay = delay;
         }
+
         public void AwaitForUserReaction()
         {
             DateTime endTime;
@@ -32,7 +36,7 @@ namespace Hackaton_Wpf.ReactionManagement
                 {
                     if (!noReaction)
                     {
-
+                        StartInteraction();
                         botCheer++;
                     }
                 }
@@ -45,6 +49,24 @@ namespace Hackaton_Wpf.ReactionManagement
             };
             threadForTimer = new Thread(starter);
             threadForTimer.Start();
+        }
+
+        private void StartInteraction()
+        {
+            Random rand = new Random();
+            int interaction = rand.Next(1, 4);
+            
+            switch (interaction)
+            {
+                case 1:                  
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
