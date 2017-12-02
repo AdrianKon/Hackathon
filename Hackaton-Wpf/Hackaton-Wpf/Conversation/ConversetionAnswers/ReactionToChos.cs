@@ -35,7 +35,6 @@ namespace Hackaton_Wpf.Conversation.ConversetionAnswers
 
         private void addOrStronger(List<Tag> tags)
         {
-
            dbMenager.CreateOrUpdateUserProfile(tags);
         }
 

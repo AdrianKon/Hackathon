@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Documents;
 using Hackaton_Wpf.Conversation.ConversetionAnswers;
 using Hackathon;
+using Hackaton_Wpf.Conversation.Shared;
 
 namespace Hackaton_Wpf.Conversation
 {
@@ -39,8 +40,8 @@ namespace Hackaton_Wpf.Conversation
 
             for (int i = 0; i < 4; i++)
             {
-                var answer = firstLvl[rand.Next(0, firstLvl.Count - 1)];
-                //firstLvl.Remove(answer);
+                var answer = firstLvl[i];
+                //firstLvlLocal.Remove(answer);
                 addToFirstLvl(answer);
                 conversation.answers.Add(answer);
             }
@@ -49,36 +50,41 @@ namespace Hackaton_Wpf.Conversation
         }
 
 
-        private void addToFirstLvl(AnswerOfFirstLevel firstLvl)
+        private void addToFirstLvl(AnswerOfFirstLevel firstLvlLocal)
         {
-            if(firstLvl.anserws == null)
-                firstLvl.anserws = new List<AnswerOfSecondLvl>();
+            if(firstLvlLocal.anserws == null)
+                firstLvlLocal.anserws = new List<AnswerOfSecondLvl>();
+            var answerList = secondLvl.FindAll(x => x.tagOfQuestion == firstLvlLocal.tagForAnswers);
+
             for (int i = 0; i < 4; i++ )
             {
-                var answerList = secondLvl.FindAll(x => x.tagOfQuestion == firstLvl.tagForAnswers);
+                
                 if (answerList.Count > 0)
                 {
                     var answer = answerList[rand.Next(0, answerList.Count - 1)];
-                    //secondLvl.Remove(answer);
+                    //secondLvlLocal.Remove(answer);
                     addToSecondLvl(answer);
                     answer.reaction = new ReactionToChos("addOrStronger");
-                    firstLvl.anserws.Add(answer);
+                    if(!firstLvlLocal.anserws.Contains(answer))
+                    firstLvlLocal.anserws.Add(answer);
                 }
             }
             
         }
 
-        private void addToSecondLvl(AnswerOfSecondLvl secondLvl)
+        private void addToSecondLvl(AnswerOfSecondLvl secondLvlLocal)
         {
-            if (secondLvl.answers == null)
-                secondLvl.answers = new List<AnswerOfThirdLevel>();
+            if (secondLvlLocal.answers == null)
+                secondLvlLocal.answers = new List<AnswerOfThirdLevel>();
+            var answerList = thirdLvl.FindAll(x => x.tagOfQuestion == secondLvlLocal.tagOfAnswers);
             for (int i = 0; i < 4; i++)
             {
-                var answerList = thirdLvl.FindAll(x => x.tagOfQuestion == secondLvl.tagOfAnswers);
                 if (answerList.Count > 0)
                 {
                     var answer = answerList[rand.Next(0, answerList.Count - 1)];
-                    secondLvl.answers.Add(answer);
+                    answer.tags = new List<Tag>(secondLvlLocal.tags);
+                    if(!secondLvlLocal.answers.Contains(answer))
+                    secondLvlLocal.answers.Add(answer);
                     //thirdLvl.Remove(answer);
                     if (rand.Next(0, 100) % 2 != 0)
                     {
