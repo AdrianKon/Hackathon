@@ -13,39 +13,36 @@ namespace Hackathon
     {
         private LiteDatabase liteDB;
         private static DBManager dbmPointer;
-        private string filePath;
+        private  string filePath = @"\Resources";
+        private  string fileName = @"database.db";
+        private string fullDirectory = @"\Resources" + @"\database.db";
         private Dictionary<string, string> fileNames;
         private UserProfile user;
         private BotProfile bot;
 
-        public string FilePath { get => filePath; set => filePath = value; }
+
+        private List<string> typeOfConverastionCollections; 
+        private List<Conversation> conversationCollection; 
+        private List<AnswerOfFirstLevel> firstLvlCollection;
+        private List<AnswerOfSecondLvl> secondLvlAnswers;
+        private List<AnswerOfThirdLevel> thirdLvlAnswers; 
+
+        //public string FilePath { get => filePath; set => filePath = value; }
         public Dictionary<string, string> FileNames { get => fileNames; set => fileNames = value; }
 
         public DBManager()
         {
-            if (System.IO.File.Exists(filePath))
-            {
-                liteDB = new LiteDatabase(filePath);
-            }
-            else
-            {
-                liteDB = CreateDB();
-            }
-
-            fileNames = new Dictionary<string, string>();
+            CreateDB();
         }
         
 
-        public static DBManager GetInstance
+        public static DBManager GetInstance()
         {
-            get
-            {
                 if (dbmPointer == null)
                 {
                     dbmPointer = new DBManager();
                 }
                 return dbmPointer;
-            }
         }
 
         public void CreateOrUpdateUserProfile(List<Tag> tags)
@@ -62,7 +59,7 @@ namespace Hackathon
                     var el = user.SearchTags.Find(x => x.name == element.name);
                     if (el != null)
                     {
-                        el.strength = element.strength;
+                        el.strength++;
                     }
                     else
                     {
@@ -70,6 +67,11 @@ namespace Hackathon
                     }
                 }
             }
+        }
+
+        public void softenTagForUser(Tag tag)
+        {
+            user.SearchTags.Find(x => x.name == tag.name).strength--;
         }
 
         public void CreateOrUpdateBotProfile()
@@ -90,45 +92,33 @@ namespace Hackathon
             return bot;               
         }
 
-        public List<Conversation> GetConversationProfile(string typeOfConversation)
+        public List<Conversation> GetConversation(string typeOfConversation)
         {
-            var collection = liteDB.GetCollection<Conversation>("conversationProfile");
-            return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
+            return conversationCollection.FindAll(c => c.typeOfConversation == typeOfConversation).ToList();
         }
 
-        public List<AnswerOfFirstLevel> GetFirstAnswerProfile(string typeOfConversation)
+        public List<AnswerOfFirstLevel> GetFirstAnswerLVL(string typeOfConversation)
         {
-            var collection = liteDB.GetCollection<AnswerOfFirstLevel>("firstAnswerProfile");
-            return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
+            return firstLvlCollection.FindAll(c => c.typeOfConversation == typeOfConversation).ToList();
         }
 
-        public List<AnswerOfSecondLvl> GetSecondAnswerProfile(string typeOfConversation)
+        public List<AnswerOfSecondLvl> GetSecondAnswerLVL(string typeOfConversation)
         {
-                var collection = liteDB.GetCollection<AnswerOfSecondLvl>("firstAnswerProfile");
-                return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
+                return secondLvlAnswers.FindAll(c => c.typeOfConversation == typeOfConversation).ToList();
         }
 
-        public List<AnswerOfThirdLevel> GetThirdAnswerProfile(string typeOfConversation)
+        public List<AnswerOfThirdLevel> GetThirdAnswerLVL(string typeOfConversation)
         {
-            var collection = liteDB.GetCollection<AnswerOfThirdLevel>("firstAnswerProfile");
-            return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
-        }
-
-        public List<Tag> GetTagProfile()
-        {
-             var collection = liteDB.GetCollection<Tag>("firstAnswerProfile");
-             return collection.FindAll().ToList();
+            return thirdLvlAnswers.FindAll(c => c.typeOfConversation == typeOfConversation).ToList();
         }
 
         public List<string> GetConversationType()
         {
-
-             var collection = liteDB.GetCollection<string>("conversationType");
-             return collection.FindAll().ToList();
+             return typeOfConverastionCollections.ToList();
 
         }
            
-        private LiteDatabase CreateDB()
+        private void CreateDB()
         {
             CreateOrUpdateUserProfile(new List<Tag>()
             {
@@ -142,10 +132,182 @@ namespace Hackathon
             });
 
             CreateOrUpdateBotProfile();
+            
 
-            var dataBase = new LiteDatabase(filePath);
+            typeOfConverastionCollections = new List<string>();
+            conversationCollection = new List<Conversation>();
+            firstLvlCollection = new List<AnswerOfFirstLevel>();
+            secondLvlAnswers = new List<AnswerOfSecondLvl>();
+            thirdLvlAnswers = new List<AnswerOfThirdLevel>();
 
-            return dataBase;
+            //TypeOfConversations
+            
+            typeOfConverastionCollections.Add("Jak minal dzien");
+            typeOfConverastionCollections.Add("Jak ci sie pracowalo");
+
+            //Add Conversation
+            
+            conversationCollection.Add(new Conversation {typeOfConversation = "Jak minal dzien", botLine = "Jak Ci minal dzien " + user.UserName + "?"});
+            conversationCollection.Add(new Conversation { typeOfConversation = "Jak ci sie pracowalo", botLine = "Jak tam w pracy " + user.UserName + "?" });
+
+                //Add FirstLvLAnswers To Jak minal dzien
+            
+                firstLvlCollection.Add(new AnswerOfFirstLevel
+                {
+                    typeOfConversation = "Jak minal dzien",
+                    tagForAnswers = "dobrze",
+                    userLine = "Calkiem niezle"
+                });
+                firstLvlCollection.Add(new AnswerOfFirstLevel
+                {
+                    typeOfConversation = "Jak minal dzien",
+                    tagForAnswers = "srednio",
+                    userLine = "Srednio"
+                });
+                firstLvlCollection.Add(new AnswerOfFirstLevel
+                {
+                    typeOfConversation = "Jak minal dzien",
+                    tagForAnswers = "zle",
+                    userLine = "Zle"
+                });
+                firstLvlCollection.Add(new AnswerOfFirstLevel
+                {
+                    typeOfConversation = "Jak minal dzien",
+                    tagForAnswers = "najgorszy",
+                    userLine = "Najgorszy dzien jaki mialem"
+                });
+
+                    //add SecondLvLAnswers for dobrze
+
+                    secondLvlAnswers.Add(new AnswerOfSecondLvl
+                    {
+                        tagOfQuestion = "dobrze",
+                        typeOfConversation = "Jak minal dzien",
+                        botLine = "Milo to slyszec :) A co ci sie przytrafilo?",
+                        userLine = "Mile spotkanie z przyjaciolmi",
+                        tags = new List<Tag>
+                        {
+                            new Tag
+                            {
+                                name = "events",
+                                strength = 0
+                            }
+                        },
+                        tagOfAnswers = "dobrzeDzien"
+                    });
+                    secondLvlAnswers.Add(new AnswerOfSecondLvl
+                    {
+                        tagOfQuestion = "dobrze",
+                        typeOfConversation = "Jak minal dzien",
+                        botLine = "Milo to slyszec :) A co ci sie przytrafilo?",
+                        userLine = "Mialem dobry obiad z miesem",
+                        tags = new List<Tag>
+                        {
+                            new Tag
+                            {
+                                name = "meat",
+                                strength = 0
+                            },
+                            new Tag
+                            {
+                                name = "food",
+                                strength = 0
+                            }
+                        },
+                        tagOfAnswers = "dobrzeDzien"
+                    });
+                    secondLvlAnswers.Add(new AnswerOfSecondLvl
+                    {
+                        tagOfQuestion = "dobrze",
+                        typeOfConversation = "Jak minal dzien",
+                        botLine = "Milo to slyszec :) A co ci sie przytrafilo?",
+                        userLine = "Dobrze mi minal dzien w pracy",
+                        tags = new List<Tag>
+                        {
+                            new Tag
+                            {
+                                name = "work",
+                                strength = 0
+                            }
+                        },
+                        tagOfAnswers = "dobrzeDzien"
+                    });
+                    secondLvlAnswers.Add(new AnswerOfSecondLvl
+                    {
+                        tagOfQuestion = "dobrze",
+                        typeOfConversation = "Jak minal dzien",
+                        botLine = "Milo to slyszec :) A co ci sie przytrafilo?",
+                        userLine = "Byla ladna pogoda",
+                        tags = new List<Tag>
+                        {
+                            new Tag
+                            {
+                                name = "weather",
+                                strength = 0
+                            }
+                        },
+                        tagOfAnswers = "dobrzeDzien"
+                    });
+                    secondLvlAnswers.Add(new AnswerOfSecondLvl
+                    {
+                        tagOfQuestion = "dobrze",
+                        typeOfConversation = "Jak minal dzien",
+                        botLine = "Milo to slyszec :) A co ci sie przytrafilo?",
+                        userLine = "Nie bylo korkow na miescie",
+                        tags = new List<Tag>
+                        {
+                            new Tag
+                            {
+                                name = "traffic",
+                                strength = 0
+                            }
+                        },
+                        tagOfAnswers = "dobrzeDzien"
+                    });
+                    secondLvlAnswers.Add(new AnswerOfSecondLvl
+                    {
+                        tagOfQuestion = "dobrze",
+                        typeOfConversation = "Jak minal dzien",
+                        botLine = "Milo to slyszec :) A co ci sie przytrafilo?",
+                        userLine = "A jakos tak milo przelecial",
+                        tags = new List<Tag>
+                        {
+                            new Tag
+                            {
+                                name = "good day",
+                                strength = 0
+                            }
+                        },
+                        tagOfAnswers = "dobrzeDzien"
+                    });
+
+                        //add thirdLvlAnswer For dobrze
+                        thirdLvlAnswers.Add(new AnswerOfThirdLevel
+                        {
+                            typeOfConversation = "Jak minal dzien",
+                            tagOfQuestion = "dobrzeDzien",
+                            botLine = "Super :) Skoro ci sie to spodobalo to moze zainteresuje cie to: "
+                        });
+
+                    //add secondLvlAnswers for srednio
+
+                    secondLvlAnswers.Add(new AnswerOfSecondLvl
+                    {
+                        tagOfQuestion = "srednio",
+                        typeOfConversation = "Jak minal dzien",
+                        botLine = "Ale chyba nie bylo tak zle?",
+                        userLine = "Mozna przezyc",
+                        tags = new List<Tag>
+                        {
+                            new Tag
+                            {
+                                name = "asd",
+                                strength = 0
+                            }
+                        },
+                        tagOfAnswers = "dobrzeDzien"
+                    });
+            
         }
     }
 }

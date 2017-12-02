@@ -6,13 +6,8 @@ namespace Hackaton_Wpf.Conversation.ConversetionAnswers
     public class AnswerOfFirstLevel
     {
         public string typeOfConversation { get; set; }
-        public List<string> tags { get; set; }
-        public string content { get; set; }
+        public string tagForAnswers { get; set; }
+        public string userLine { get; set; }
         public List<AnswerOfSecondLvl> anserws { get; set; }
-        public ReactionToChos reaction { get; set; }
-
-
-
-
     }
 }
