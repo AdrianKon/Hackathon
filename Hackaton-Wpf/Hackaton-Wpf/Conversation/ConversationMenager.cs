@@ -21,7 +21,7 @@ namespace Hackaton_Wpf.Conversation
             rand = new Random();
         }
 
-        /*public ConversetionAnswers.Conversation GetConversation()
+        public ConversetionAnswers.Conversation GetConversation()
         {
             string typeOfConversation =
                 dataBaseMenager.GetConversationType()[
@@ -46,7 +46,7 @@ namespace Hackaton_Wpf.Conversation
             }
 
             return conversation;
-        }*/
+        }
 
 
         private void addToFirstLvl(AnswerOfFirstLevel firstLvl)
@@ -56,11 +56,14 @@ namespace Hackaton_Wpf.Conversation
             for (int i = 0; i < 4; i++ )
             {
                 var answerList = secondLvl.FindAll(x => x.tagOfQuestion == firstLvl.tagForAnswers);
-                var answer = answerList[rand.Next(0, answerList.Count - 1)];
-                //secondLvl.Remove(answer);
-                addToSecondLvl(answer);
-                answer.reaction = new ReactionToChos("addOrStronger");
-                firstLvl.anserws.Add(answer);
+                if (answerList.Count > 0)
+                {
+                    var answer = answerList[rand.Next(0, answerList.Count - 1)];
+                    //secondLvl.Remove(answer);
+                    addToSecondLvl(answer);
+                    answer.reaction = new ReactionToChos("addOrStronger");
+                    firstLvl.anserws.Add(answer);
+                }
             }
             
         }
@@ -72,15 +75,19 @@ namespace Hackaton_Wpf.Conversation
             for (int i = 0; i < 4; i++)
             {
                 var answerList = thirdLvl.FindAll(x => x.tagOfQuestion == secondLvl.tagOfAnswers);
-                var answer = answerList[rand.Next(0, answerList.Count - 1)];
-                //thirdLvl.Remove(answer);
-                if (rand.Next(0, 100) % 2 != 0)
+                if (answerList.Count > 0)
                 {
-                    answer.reaction = new ReactionToChos("schowMeme");
-                }
-                else
-                {
-                    answer.reaction = new ReactionToChos("schowNews");
+                    var answer = answerList[rand.Next(0, answerList.Count - 1)];
+                    secondLvl.answers.Add(answer);
+                    //thirdLvl.Remove(answer);
+                    if (rand.Next(0, 100) % 2 != 0)
+                    {
+                        answer.reaction = new ReactionToChos("schowMeme");
+                    }
+                    else
+                    {
+                        answer.reaction = new ReactionToChos("schowNews");
+                    }
                 }
             }
         }

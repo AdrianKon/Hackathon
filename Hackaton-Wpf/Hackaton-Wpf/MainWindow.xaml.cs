@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hackaton_Wpf.Conversation;
 using Hackaton_Wpf.Conversation.Shared;
 using Hackaton_Wpf.RandomMeme;
 
@@ -27,6 +28,10 @@ namespace Hackaton_Wpf
         {
             
             InitializeComponent();
+
+            ConversationMenagerInterface conv = new ConversationMenager();
+            var cos = conv.GetConversation();
+
             MemeFace.ToolTip = "hello ya little sh";
             TextBlock textBlock = new TextBlock();
 
@@ -40,7 +45,7 @@ namespace Hackaton_Wpf
 
 
             textBlock = bubble.createBubbleContentChoice("How do you feel?", ans);
-            bubble.createMemeFace(MemeFace, @"C:\Users\mono\source\repos\Hackathon\Hackaton-Wpf\Hackaton-Wpf\Res\trollface.png", textBlock);
+            bubble.createMemeFace(MemeFace, @"C:\Users\Patryk\source\repos\Hackathon\Hackaton-Wpf\Hackaton-Wpf\Res\trollface.png", textBlock);
             
         }
     }

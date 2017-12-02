@@ -289,9 +289,16 @@ namespace Hackathon
                             botLine = "Super :) Skoro ci sie to spodobalo to moze zainteresuje cie to: "
                         });
 
-                    //add secondLvlAnswers for srednio
+                        thirdLvlAnswers.Add(new AnswerOfThirdLevel
+                        {
+                            typeOfConversation = "Jak minal dzien",
+                            tagOfQuestion = "dobrzeDzien",
+                            botLine = "Milo Slyszec :) Skoro ci sie to spodobalo to moze zainteresuje cie to: "
+                        });
 
-                    secondLvlAnswers.Add(new AnswerOfSecondLvl
+            //add secondLvlAnswers for srednio
+
+            secondLvlAnswers.Add(new AnswerOfSecondLvl
                     {
                         tagOfQuestion = "srednio",
                         typeOfConversation = "Jak minal dzien",
