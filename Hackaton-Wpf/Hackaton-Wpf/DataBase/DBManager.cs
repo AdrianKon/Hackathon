@@ -14,9 +14,9 @@ namespace Hackathon
         private LiteDatabase liteDB;
         private static DBManager dbmPointer;
         private  string filePath = @"\Resources";
-        private  string fileName = @"database.db";
+        private  string filename = @"database.db";
         private string fullDirectory = @"\Resources" + @"\database.db";
-        private Dictionary<string, string> fileNames;
+        private Dictionary<string, string> filenames;
         private UserProfile user;
         private BotProfile bot;
 
@@ -28,7 +28,7 @@ namespace Hackathon
         private List<AnswerOfThirdLevel> thirdLvlAnswers; 
 
         //public string FilePath { get => filePath; set => filePath = value; }
-        public Dictionary<string, string> FileNames { get => fileNames; set => fileNames = value; }
+        public Dictionary<string, string> Filenames { get => filenames; set => filenames = value; }
 
         public DBManager()
         {
@@ -147,8 +147,8 @@ namespace Hackathon
 
             //Add Conversation
             
-            conversationCollection.Add(new Conversation {typeOfConversation = "Jak minal dzien", botLine = "Jak Ci minal dzien " + user.UserName + "?"});
-            conversationCollection.Add(new Conversation { typeOfConversation = "Jak ci sie pracowalo", botLine = "Jak tam w pracy " + user.UserName + "?" });
+            conversationCollection.Add(new Conversation {typeOfConversation = "Jak minal dzien", botLine = "Jak Ci minal dzien " + user.Username + "?"});
+            conversationCollection.Add(new Conversation { typeOfConversation = "Jak ci sie pracowalo", botLine = "Jak tam w pracy " + user.Username + "?" });
 
                 //Add FirstLvLAnswers To Jak minal dzien
             

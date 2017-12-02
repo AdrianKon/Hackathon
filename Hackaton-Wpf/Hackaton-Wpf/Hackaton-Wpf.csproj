@@ -68,6 +68,9 @@
     <Compile Include="KeyLogger\KeyLogger.cs" />
     <Compile Include="KeyLogger\LoggerDelegate.cs" />
     <Compile Include="RandomMeme\MemeHandler.cs" />
+    <Compile Include="WeatherAPI\Current.cs" />
+    <Compile Include="WeatherAPI\WeatherAPI.cs" />
+    <Compile Include="WeatherAPI\WeatherForecast.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
