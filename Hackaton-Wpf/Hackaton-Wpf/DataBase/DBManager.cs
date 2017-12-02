@@ -78,12 +78,10 @@ namespace Hackathon
         }
         public List<Conversation> GetConversationProfile( string typeOfConversation)
         {
-            List<Conversation> conversationProfile;
             using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\ConversationProfile.db"))
             {
                 var collection = db.GetCollection<Conversation>("conversationProfile");
-                    conversationProfile = collection.Find(x => x.typeOfConversation == typeOfConversation).ToList();
-                    return conversationProfile;
+                    return collection.Find(x => x.typeOfConversation == typeOfConversation).ToList();
             }
         }
         public AnswerOfFirstLevel GetFirstAnswerProfile()
