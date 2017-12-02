@@ -76,8 +76,6 @@
     <Compile Include="Conversation\ConversationMenagerInterface.cs" />
     <Compile Include="Conversation\ConversetionAnswers\ReactionToChos.cs" />
     <Compile Include="Conversation\Shared\Tag.cs" />
-    <Compile Include="Conversation\TempClasses\DataBaseMenager.cs" />
-    <Compile Include="Conversation\TempClasses\DataBaseMenagerIntrerface.cs" />
     <Compile Include="DataBase\BotProfile.cs" />
     <Compile Include="DataBase\DBManager.cs" />
     <Compile Include="DataBase\UserProfile.cs" />
