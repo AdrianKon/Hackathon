@@ -50,12 +50,13 @@
 
     </Window.Resources>
     <Grid>
-
-
         <Image  HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="MemeFace" Height="120" Width="120" Margin="0,0,10,40">
+            
         </Image>
-         <Popup x:Name="bubblePopup" Width="200" Height="200" Placement="Top" PlacementTarget="{Binding ElementName=MemeFace}" IsOpen="True" Margin="40,0,0,0">
-            <TextBlock Name="bubbleTextBlock" Background="White" Margin="-216,-98,216,98" >kjsdfksjdsldkfs</TextBlock>
+        <Popup x:Name="bubblePopup" PlacementTarget="{Binding ElementName=MemeFace}" Placement="Top" Width="200" Height="200" IsOpen="True" IsEnabled="True" >
+            <StackPanel x:Name="bubbleStackPanel" Background="White">
+                
+            </StackPanel>
         </Popup>
     </Grid>
 </Window>
