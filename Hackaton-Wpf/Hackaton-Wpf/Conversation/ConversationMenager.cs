@@ -21,7 +21,7 @@ namespace Hackaton_Wpf.Conversation
             rand = new Random();
         }
 
-        public ConversetionAnswers.Conversation GetConversation()
+        /*public ConversetionAnswers.Conversation GetConversation()
         {
             string typeOfConversation =
                 dataBaseMenager.GetConversationType()[
@@ -46,7 +46,8 @@ namespace Hackaton_Wpf.Conversation
             }
 
             return conversation;
-        }
+        }*/
+
 
         private void addToFirstLvl(AnswerOfFirstLevel firstLvl)
         {
