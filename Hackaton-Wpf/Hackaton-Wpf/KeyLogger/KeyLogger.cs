@@ -16,7 +16,7 @@ namespace Hackaton_Wpf.KeyLogger
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
         private static List<string> keysList;
-        public delegate void updateTextBlockDelegate();
+        public delegate void updateTextBlockDelegate(string imagePath, string newsContent);
         public static event updateTextBlockDelegate delegates;
 
         
@@ -54,7 +54,7 @@ namespace Hackaton_Wpf.KeyLogger
                 if (keysList[0].Equals("W") && keysList[1].Equals("W") && keysList[2].Equals("W"))
                 {
                     keysList = new List<string>() { " ", " " };
-                    delegates();
+                    //delegates();
                 }
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);

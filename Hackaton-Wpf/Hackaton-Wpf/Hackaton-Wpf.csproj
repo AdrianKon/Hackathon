@@ -130,8 +130,22 @@
   <ItemGroup>
     <Resource Include="Res\trollface.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="RandomMeme\Memes\" />
+    <Resource Include="RandomMeme\Memes\a1KjjPR_460s.jpg" />
+    <Resource Include="RandomMeme\Memes\aZg5KOX_460s.jpg" />
+    <Resource Include="RandomMeme\Memes\bg1.jpg" />
+    <Resource Include="RandomMeme\Memes\bg2.jpg" />
+    <Resource Include="RandomMeme\Memes\bg3.jpg" />
+    <Resource Include="RandomMeme\Memes\finally-synthetic-watermelon-min.jpg" />
+    <Resource Include="RandomMeme\Memes\finals.jpg" />
+    <Resource Include="RandomMeme\Memes\meme248.jpg" />
+    <Resource Include="RandomMeme\Memes\Meme7.jpg" />
+    <Resource Include="RandomMeme\Memes\putinmeme02.jpg" />
+    <Resource Include="RandomMeme\Memes\thug-life-funny-meme.jpg" />
+    <Resource Include="RandomMeme\Memes\welcome-to-the-internet1.jpg" />
+    <Resource Include="RandomMeme\Memes\welcome_to_the_internet_by_party9999999-d6mjzzs.jpg" />
+    <Resource Include="RandomMeme\Memes\when-i-said-nuke-the-chinese-north-korea-meme-nuclear-weapons.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

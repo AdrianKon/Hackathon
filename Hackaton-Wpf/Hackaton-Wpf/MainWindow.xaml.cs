@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hackathon;
+using Hackaton_Wpf.Conversation;
 using Hackaton_Wpf.Conversation.Shared;
 //using Hackaton_Wpf.RandomMeme;
 
@@ -49,17 +50,19 @@ namespace Hackaton_Wpf
             doAfterConstructor();
         }
 
-        public void doAfterConstructor() { 
+        public void doAfterConstructor() {
             //textBlock.Text = "ab";
-            //Thread thread = new Thread(KeyLogger.KeyLogger.MainThread);
-            //thread.IsBackground = true;
-            //thread.Start();
-            var x = 2;
+            Thread thread = new Thread(KeyLogger.KeyLogger.MainThread);
+            thread.IsBackground = true;
+            thread.Start();
 
             BubbleHandler bubble = new BubbleHandler();
             //ReactionManagement.ReactionManager reaction = new ReactionManagement.ReactionManager(5, this, bubble);
+            var conversationMenager = new ConversationMenager();
+            var conversation = conversationMenager.GetConversation();
             InitializeComponent();
-            //KeyLogger.KeyLogger.delegates += updateTextBlock;
+            // KeyLogger.KeyLogger.delegates += bubble.createBubbleContentChoice(bubbleStackPanel , conversation);
+            bubble.createBubbleContentChoice(bubbleStackPanel, conversation);
             //MemeFace.ToolTip = "hello ya little sh";
 
 
@@ -74,8 +77,8 @@ namespace Hackaton_Wpf
             ////StackPanel stackPanel = new StackPanel();
             ////bubble.createBubble(bubblePopup, textBlock);
             ////bubble.createBubbleContentChoice( bubbleStackPanel,"How do you feel?", ans);
-            
-            bubble.createMemeFace(MemeFace, @"C:\Users\mono\source\repos\Hackathon\Hackaton-Wpf\Hackaton-Wpf\Res\trollface.png");
+
+            bubble.createMemeFace(MemeFace, @"C:\Users\lelu0\Source\Repos\Hackathon\Hackaton-Wpf\Hackaton-Wpf\Res\trollface.png");
 
             
 
