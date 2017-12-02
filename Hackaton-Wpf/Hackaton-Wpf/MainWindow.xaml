@@ -50,10 +50,7 @@
 
     </Window.Resources>
     <Grid>
-        <Image ToolTip="Hello its me :) " HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="MemFace" Height="120" Width="120" Margin="0,0,10,40">
-            <Image.Source>
-                <BitmapImage UriSource="../Res/trollface.png" />
-            </Image.Source>
+        <Image ToolTip= "" HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="MemeFace" Height="120" Width="120" Margin="0,0,10,40">
         </Image>
     </Grid>
 </Window>
