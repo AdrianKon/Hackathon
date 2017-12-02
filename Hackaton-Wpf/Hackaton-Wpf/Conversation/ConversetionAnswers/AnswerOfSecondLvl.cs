@@ -8,6 +8,7 @@ namespace Hackaton_Wpf.Conversation.ConversetionAnswers
         public string typeOfConversation { get; set; }
         public string content { get; set; }
         public List<string> tags { get; set; }
+        public List<AnswerOfThirdLevel> answers { get; set; }
         public ReactionToChos reaction { get; set; }
     }
 }
