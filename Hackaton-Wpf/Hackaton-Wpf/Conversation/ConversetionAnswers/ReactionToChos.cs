@@ -1,27 +1,30 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Hackathon;
 using Hackaton_Wpf;
+using Hackaton_Wpf.Conversation.Shared;
 
 
 namespace Hackaton_Wpf.Conversation.ConversetionAnswers
 {
     public class ReactionToChos
     {
-        public string tag { get; set; }
+        public string raction { get; set; }
         private DBManager dbMenager;
 
-        public ReactionToChos(string tag)
+        public ReactionToChos(string raction)
         {
-            this.tag = tag;
-            dbMenager = DBManager.GetInstance;
+            this.raction = raction;
+            dbMenager = DBManager.GetInstance();
         }
 
-        public void react()
+        public void react( List<Tag> tags)
         {
             
-            switch (tag)
+            switch (raction)
             {
                 case "addOrStronger":
+                    addOrStronger(tags);
                     break;
                 case "showNews":
                     break;
@@ -30,9 +33,21 @@ namespace Hackaton_Wpf.Conversation.ConversetionAnswers
             }
         }
 
-        private void addOrStronger()
+        private void addOrStronger(List<Tag> tags)
         {
-           
+
+           dbMenager.CreateOrUpdateUserProfile(tags);
+        }
+
+        private void showNews(List<Tag> tags)
+        {
+            //TO DO
+        }
+
+
+        private void showMeme(List<Tag> tags)
+        {
+            //TO DO
         }
     }
 }
