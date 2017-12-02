@@ -26,7 +26,7 @@ namespace Hackaton_Wpf
             NewsHandler nwHandler = new NewsHandler(new List<Tag>());
             var news = nwHandler.GetNews();
             InitializeComponent();
-            MemeFace.ToolTip = "hello ya little sh";
+            //MemeFace.ToolTip = "hello ya little sh";
             TextBlock textBlock = new TextBlock();
 
             BubbleHandler bubble = new BubbleHandler();
@@ -38,8 +38,9 @@ namespace Hackaton_Wpf
             ans.Add("w4 student");
 
 
-            textBlock = bubble.createBubbleContentChoice("How do you feel?", ans);
-            bubble.createMemeFace(MemeFace, @"C:\Users\mono\source\repos\Hackathon\Hackaton-Wpf\Hackaton-Wpf\Res\trollface.png", textBlock);
+            bubble.createBubbleContentChoice( bubblePopup ,"How do you feel?", ans);
+            bubble.createMemeFace(MemeFace, @"C:\Users\mono\source\repos\Hackathon\Hackaton-Wpf\Hackaton-Wpf\Res\trollface.png");
+            //bubble.createBubble(bubblePopup, textBlock);
             
         }
     }
