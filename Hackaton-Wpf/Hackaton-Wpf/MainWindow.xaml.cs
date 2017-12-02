@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hackathon;
 using Hackaton_Wpf.Conversation.Shared;
 //using Hackaton_Wpf.RandomMeme;
 
