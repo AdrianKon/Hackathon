@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Hackaton_Wpf.Conversation.ConversetionAnswers
 {
@@ -8,7 +9,9 @@ namespace Hackaton_Wpf.Conversation.ConversetionAnswers
         public string content { get; set; } 
         public List<AnswerOfFirstLevel> answers { get; set; }
 
-
-
+        public static implicit operator Conversation(List<Conversation> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

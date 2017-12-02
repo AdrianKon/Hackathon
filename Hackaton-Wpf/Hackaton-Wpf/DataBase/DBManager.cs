@@ -76,22 +76,15 @@ namespace Hackathon
             }
             return botProfile;
         }
-        public Conversation GetConversationProfile()
+        public List<Conversation> GetConversationProfile( string typeOfConversation)
         {
-            Conversation conversationProfile = new Conversation();
+            List<Conversation> conversationProfile;
             using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\ConversationProfile.db"))
             {
                 var collection = db.GetCollection<Conversation>("conversationProfile");
-                try
-                {
-                    conversationProfile = collection.FindById(1);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                    conversationProfile = collection.Find(x => x.typeOfConversation == typeOfConversation).ToList();
+                    return conversationProfile;
             }
-            return conversationProfile;
         }
         public AnswerOfFirstLevel GetFirstAnswerProfile()
         {
