@@ -11,13 +11,30 @@ namespace Hackathon
 {
     class DBManager
     {
-
-        private static DBManager dbmPointer = null;
+        private LiteDatabase liteDB;
+        private static DBManager dbmPointer;
         private string filePath;
-        private Dictionary<string, string> fileNames = new Dictionary<string, string>();
+        private Dictionary<string, string> fileNames;
+        private UserProfile user;
+        private BotProfile bot;
 
         public string FilePath { get => filePath; set => filePath = value; }
         public Dictionary<string, string> FileNames { get => fileNames; set => fileNames = value; }
+
+        public DBManager()
+        {
+            if (System.IO.File.Exists(filePath))
+            {
+                liteDB = new LiteDatabase(filePath);
+            }
+            else
+            {
+                liteDB = CreateDB();
+            }
+
+            fileNames = new Dictionary<string, string>();
+        }
+        
 
         public static DBManager GetInstance
         {
@@ -31,106 +48,104 @@ namespace Hackathon
             }
         }
 
-        public void CreateOrUpdateProfile<T>(string fileName,T objectOfProfile)
+        public void CreateOrUpdateUserProfile(List<Tag> tags)
         {
-
-            using (var db = new LiteDatabase(filePath))
+            if (user == null)
             {
-                var collection = db.GetCollection<T>(fileName);
-                try
+                user = new UserProfile("Janek");
+                user.SearchTags = new List<Tag>(tags);
+            }
+            else
+            {
+                foreach (var element in tags)
                 {
-                    collection.Insert(1, objectOfProfile);
-                }
-                catch
-                {
-                    ///
+                    var el = user.SearchTags.Find(x => x.name == element.name);
+                    if (el != null)
+                    {
+                        el.strength = element.strength;
+                    }
+                    else
+                    {
+                        user.SearchTags.Add(element);
+                    }
                 }
             }
         }
 
-        public UserProfile GetUserProfile(string userName)
+        public void CreateOrUpdateBotProfile()
         {
-            UserProfile userProfile = new UserProfile(userName);
-            using (var db = new LiteDatabase(filePath))
+            if (bot == null)
             {
-                var collection = db.GetCollection<UserProfile>("userProfile");
-                try
-                {
-                    userProfile = collection.FindById(1);
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                bot = new BotProfile();
             }
-            return userProfile;
+        }
+
+        public UserProfile GetUserProfile()
+        {
+            return user;
         }
 
         public BotProfile GetBotProfile()
         {
-            BotProfile botProfile = new BotProfile();
-            using (var db = new LiteDatabase(filePath))
-            {
-                var collection = db.GetCollection<BotProfile>("botProfile");
-                try
-                {
-                    botProfile = collection.FindById(1);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-            return botProfile;
+            return bot;               
         }
+
         public List<Conversation> GetConversationProfile(string typeOfConversation)
         {
-            using (var db = new LiteDatabase(filePath))
-            {
-                var collection = db.GetCollection<Conversation>("conversationProfile");
-                    return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
-            }
+            var collection = liteDB.GetCollection<Conversation>("conversationProfile");
+            return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
         }
+
         public List<AnswerOfFirstLevel> GetFirstAnswerProfile(string typeOfConversation)
         {
-            using (var db = new LiteDatabase(filePath))
-            {
-                var collection = db.GetCollection<AnswerOfFirstLevel>("firstAnswerProfile");
-                return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
-
-            }
+            var collection = liteDB.GetCollection<AnswerOfFirstLevel>("firstAnswerProfile");
+            return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
         }
 
         public List<AnswerOfSecondLvl> GetSecondAnswerProfile(string typeOfConversation)
         {
-            using (var db = new LiteDatabase(filePath))
-            {
-                var collection = db.GetCollection<AnswerOfSecondLvl>("firstAnswerProfile");
+                var collection = liteDB.GetCollection<AnswerOfSecondLvl>("firstAnswerProfile");
                 return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
-            }
         }
+
         public List<AnswerOfThirdLevel> GetThirdAnswerProfile(string typeOfConversation)
         {
-                using (var db = new LiteDatabase(filePath))
-                {
-                    var collection = db.GetCollection<AnswerOfThirdLevel>("firstAnswerProfile");
-                    return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
-                }
+            var collection = liteDB.GetCollection<AnswerOfThirdLevel>("firstAnswerProfile");
+            return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
         }
+
         public List<Tag> GetTagProfile()
         {
-            using (var db = new LiteDatabase(filePath))
-            {
-                var collection = db.GetCollection<Tag>("firstAnswerProfile");
-                return collection.FindAll().ToList();
-            }
+             var collection = liteDB.GetCollection<Tag>("firstAnswerProfile");
+             return collection.FindAll().ToList();
         }
-        public string GetConversationType()
+
+        public List<string> GetConversationType()
         {
-            using (var db = new LiteDatabase(filePath))
+
+             var collection = liteDB.GetCollection<string>("conversationType");
+             return collection.FindAll().ToList();
+
+        }
+           
+        private LiteDatabase CreateDB()
+        {
+            CreateOrUpdateUserProfile(new List<Tag>()
             {
-                return db.GetCollection<string>("conversationType").ToString();            
-            }
+                new Tag(){name="memes", strength = 0 },
+                new Tag(){name="hack", strength = 0 },
+                new Tag(){name="it", strength = 0 },
+                new Tag(){name="git", strength = 0 },
+                new Tag(){name="troll", strength = 0 },
+                new Tag(){name="bot", strength = 0 },
+                new Tag(){name="ten", strength = 0 }
+            });
+
+            CreateOrUpdateBotProfile();
+
+            var dataBase = new LiteDatabase(filePath);
+
+            return dataBase;
         }
     }
 }

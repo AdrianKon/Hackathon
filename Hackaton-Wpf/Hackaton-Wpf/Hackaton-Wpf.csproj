@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Gui\BubbleHandler.cs" />
     <Compile Include="Conversation\ConversetionAnswers\AnswerOfFirstLevel.cs" />
     <Compile Include="Conversation\ConversetionAnswers\AnswerOfSecondLvl.cs" />
     <Compile Include="Conversation\ConversetionAnswers\AnswerOfThirdLevel.cs" />

@@ -24,7 +24,7 @@ namespace Hackathon
 
         public UserProfile(string userName)
         {
-            UserName = userName;
+            this.UserName = userName;
             SearchTags = new List<Tag>();
             DictionaryOfWords = new List<string>();
         }
