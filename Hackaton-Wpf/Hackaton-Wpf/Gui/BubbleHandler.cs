@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -11,15 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace Hackaton_Wpf
 {
     class BubbleHandler
     {
         public
-        void createMemeFace( Image image, string imagePath, TextBlock textBlock ) {
+        void createMemeFace(Image image, string imagePath)
+        {
             image.Source = new BitmapImage(new System.Uri(imagePath));
-            image.ToolTip = textBlock.ToolTip;
+            //image.ToolTip = textBlock.ToolTip;
+        }
+
+
+        public void createBubble(Popup popup, TextBlock textBlock)
+        {
+            popup.Child = textBlock;
         }
 
         public TextBlock createBubbleContentEvents( string imagePath, string newsContent) {
@@ -36,7 +45,7 @@ namespace Hackaton_Wpf
 
             return textBlock;
         }
-        public TextBlock createBubbleContentChoice(string question, List<string> ans)
+        public void createBubbleContentChoice(Popup popup ,string question, List<string> ans)
         {
             TextBlock textBlock = new TextBlock();
             List<TextBlock> choises = new List<TextBlock>();
@@ -50,8 +59,9 @@ namespace Hackaton_Wpf
                 choises[choises.Count - 1].Text = ans[i];
                 stackPanel.Children.Add(choises[choises.Count - 1]);
             }
-            textBlock.ToolTip = stackPanel;
-            return textBlock;
+            //stackPanel.Background = Color.;
+            popup.Child = stackPanel;
+            //return textBlock;
         }
     }
 }
