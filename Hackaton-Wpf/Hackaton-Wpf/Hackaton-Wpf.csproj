@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Conversation\ConversationMenager.cs" />
+    <Compile Include="KeyLogger\KeyLogger.cs" />
+    <Compile Include="KeyLogger\LoggerDelegate.cs" />
     <Compile Include="RandomMeme\MemeHandler.cs" />
     <Compile Include="ReactionManagement\ReactionManager.cs" />
     <Page Include="MainWindow.xaml">
@@ -123,11 +127,8 @@
   <ItemGroup>
     <Resource Include="Res\trollface.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="RandomMeme\Memes\bg1.jpeg" />
-    <Resource Include="RandomMeme\Memes\bg2.jpeg" />
-    <Resource Include="RandomMeme\Memes\bg3.jpeg" />
+    <Folder Include="RandomMeme\Memes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

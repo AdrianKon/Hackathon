@@ -22,7 +22,7 @@ namespace Hackaton_Wpf
             NewsRequest = new NewsRequest(); 
             TagList = tags.OrderBy(o => o.strength).ToList();
             var tagIterator = 0;
-            while(NewsRequest.Articles.Count == 0 && tagIterator < tags.Count && TagList.Count != 0) //not allow empty tag list /indexoor exc.
+            while(NewsRequest.Articles.Count == 0 && tagIterator < tags.Count && TagList.Count != 0) //not allow empty raction list /indexoor exc.
             {
                 NewsRequest = DeserializeJson(GetJsonByTag(TagList[tagIterator].name));
                 tagIterator++;
