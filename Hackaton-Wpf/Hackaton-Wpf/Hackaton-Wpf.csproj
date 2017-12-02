@@ -63,6 +63,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Conversation\ConversationMenager.cs" />
+    <Compile Include="RandomMeme\MemeHandler.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,7 +78,6 @@
     <Compile Include="Conversation\ConversetionAnswers\AnswerOfSecondLvl.cs" />
     <Compile Include="Conversation\ConversetionAnswers\AnswerOfThirdLevel.cs" />
     <Compile Include="Conversation\ConversetionAnswers\Conversation.cs" />
-    <Compile Include="Conversation\ConversationMenager.cs" />
     <Compile Include="Conversation\ConversationMenagerInterface.cs" />
     <Compile Include="Conversation\ConversetionAnswers\ReactionToChos.cs" />
     <Compile Include="Conversation\Shared\Tag.cs" />
@@ -123,5 +124,10 @@
     <Resource Include="Res\trollface.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="RandomMeme\Memes\bg1.jpeg" />
+    <Resource Include="RandomMeme\Memes\bg2.jpeg" />
+    <Resource Include="RandomMeme\Memes\bg3.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
