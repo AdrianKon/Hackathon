@@ -1,12 +1,59 @@
 ﻿<Window x:Class="Hackaton_Wpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hackaton_Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        x:Name="Window"
+        Title="Memysław" 
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        ResizeMode="CanResizeWithGrip"
+        Background="Transparent"
+        WindowState="Maximized"
+        >
+    <Window.Resources>
+
+        <Style x:Key="{x:Type ToolTip}" TargetType="ToolTip" >
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="HasDropShadow" Value="True" />
+            <Setter Property="Placement" Value="Top"/>
+            <Setter Property="Template" >
+            
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToolTip">
+                        <ed:Callout Name="Border"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}"
+                                MinWidth="100"
+                                MinHeight="30"
+                                Margin="0,0,70,10"
+                                AnchorPoint="0.50,1.35"
+                                Background="Red"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                CalloutStyle="RoundedRectangle"
+                                Fill="#FFF4F4F5"
+                                FontSize="14.667"
+                                Stroke="Black">
+                            <ContentPresenter Margin="4"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top" />
+                        </ed:Callout>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
     <Grid>
-        
+        <Image ToolTip="Hello its me :) " HorizontalAlignment="Right" VerticalAlignment="Bottom" Name="MemFace" Height="120" Width="120" Margin="0,0,10,40">
+            <Image.Source>
+                <BitmapImage UriSource="../Res/trollface.png" />
+            </Image.Source>
+        </Image>
     </Grid>
 </Window>

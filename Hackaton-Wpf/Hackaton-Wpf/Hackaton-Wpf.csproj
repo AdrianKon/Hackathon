@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiteDB, Version=4.0.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.4.0.0\lib\net40\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Expression.Drawing.3.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -62,6 +68,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Conversation\ConversetionAnswers\AnswerOfFirstLevel.cs" />
+    <Compile Include="Conversation\ConversetionAnswers\AnswerOfSecondLvl.cs" />
+    <Compile Include="Conversation\ConversetionAnswers\AnswerOfThirdLevel.cs" />
+    <Compile Include="Conversation\ConversetionAnswers\Conversation.cs" />
+    <Compile Include="Conversation\ConversationMenager.cs" />
+    <Compile Include="Conversation\ConversationMenagerInterface.cs" />
+    <Compile Include="Conversation\ConversetionAnswers\ReactionToChos.cs" />
+    <Compile Include="Conversation\Shared\Tag.cs" />
+    <Compile Include="Conversation\TempClasses\DataBaseMenager.cs" />
+    <Compile Include="Conversation\TempClasses\DataBaseMenagerIntrerface.cs" />
+    <Compile Include="DataBase\BotProfile.cs" />
+    <Compile Include="DataBase\DBManager.cs" />
+    <Compile Include="DataBase\UserProfile.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -88,6 +107,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -96,5 +116,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\trollface.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
