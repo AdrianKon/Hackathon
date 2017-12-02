@@ -5,13 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using LiteDB;
 using Hackaton_Wpf.Conversation.ConversetionAnswers;
+using Hackaton_Wpf.Conversation.Shared;
+using System.Configuration;
 namespace Hackathon
 {
     class DBManager
     {
 
         private static DBManager dbmPointer = null;
+        private string filePath;
+        private Dictionary<string, string> fileNames = new Dictionary<string, string>();
 
+        public string FilePath { get => filePath; set => filePath = value; }
+        public Dictionary<string, string> FileNames { get => fileNames; set => fileNames = value; }
 
         public static DBManager GetInstance
         {
@@ -24,10 +30,11 @@ namespace Hackathon
                 return dbmPointer;
             }
         }
+
         public void CreateOrUpdateProfile<T>(string fileName,T objectOfProfile)
         {
 
-            using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\" + fileName + ".db"))
+            using (var db = new LiteDatabase(filePath))
             {
                 var collection = db.GetCollection<T>(fileName);
                 try
@@ -44,7 +51,7 @@ namespace Hackathon
         public UserProfile GetUserProfile(string userName)
         {
             UserProfile userProfile = new UserProfile(userName);
-            using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\UserProfile.db"))
+            using (var db = new LiteDatabase(filePath))
             {
                 var collection = db.GetCollection<UserProfile>("userProfile");
                 try
@@ -62,7 +69,7 @@ namespace Hackathon
         public BotProfile GetBotProfile()
         {
             BotProfile botProfile = new BotProfile();
-            using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\BotProfile.db"))
+            using (var db = new LiteDatabase(filePath))
             {
                 var collection = db.GetCollection<BotProfile>("botProfile");
                 try
@@ -76,66 +83,54 @@ namespace Hackathon
             }
             return botProfile;
         }
-        public List<Conversation> GetConversationProfile( string typeOfConversation)
+        public List<Conversation> GetConversationProfile(string typeOfConversation)
         {
-            using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\ConversationProfile.db"))
+            using (var db = new LiteDatabase(filePath))
             {
                 var collection = db.GetCollection<Conversation>("conversationProfile");
-                    return collection.Find(x => x.typeOfConversation == typeOfConversation).ToList();
+                    return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
             }
         }
-        public AnswerOfFirstLevel GetFirstAnswerProfile()
+        public List<AnswerOfFirstLevel> GetFirstAnswerProfile(string typeOfConversation)
         {
-            AnswerOfFirstLevel answerOfFirstLevel = new AnswerOfFirstLevel();
-            using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\FirstAnswerProfile.db"))
+            using (var db = new LiteDatabase(filePath))
             {
                 var collection = db.GetCollection<AnswerOfFirstLevel>("firstAnswerProfile");
-                try
-                {
-                    answerOfFirstLevel = collection.FindById(1);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
+
             }
-            return answerOfFirstLevel;
         }
 
-        public AnswerOfSecondLvl GetSecondAnswerProfile()
+        public List<AnswerOfSecondLvl> GetSecondAnswerProfile(string typeOfConversation)
         {
-            AnswerOfSecondLvl answerOfSecondLevel = new AnswerOfSecondLvl();
-            using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\FirstAnswerProfile.db"))
+            using (var db = new LiteDatabase(filePath))
             {
                 var collection = db.GetCollection<AnswerOfSecondLvl>("firstAnswerProfile");
-                try
-                {
-                    answerOfSecondLevel = collection.FindById(1);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
             }
-            return answerOfSecondLevel;
         }
-
-        public AnswerOfThirdLevel GetThirdAnswerProfile()
+        public List<AnswerOfThirdLevel> GetThirdAnswerProfile(string typeOfConversation)
         {
-            AnswerOfThirdLevel answerOfThirdLevel = new AnswerOfThirdLevel();
-            using (var db = new LiteDatabase(@"E:\Hackathon\Hackathon\Hackathon\FirstAnswerProfile.db"))
+                using (var db = new LiteDatabase(filePath))
+                {
+                    var collection = db.GetCollection<AnswerOfThirdLevel>("firstAnswerProfile");
+                    return collection.Find(c => c.typeOfConversation == typeOfConversation).ToList();
+                }
+        }
+        public List<Tag> GetTagProfile()
+        {
+            using (var db = new LiteDatabase(filePath))
             {
-                var collection = db.GetCollection<AnswerOfThirdLevel>("firstAnswerProfile");
-                try
-                {
-                    answerOfThirdLevel = collection.FindById(1);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                var collection = db.GetCollection<Tag>("firstAnswerProfile");
+                return collection.FindAll().ToList();
             }
-            return answerOfThirdLevel;
+        }
+        public string GetConversationType()
+        {
+            using (var db = new LiteDatabase(filePath))
+            {
+                return db.GetCollection<string>("conversationType").ToString();            
+            }
         }
     }
 }
