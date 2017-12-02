@@ -17,8 +17,20 @@ using System.Drawing;
 
 namespace Hackaton_Wpf
 {
-    class BubbleHandler
+    public class BubbleHandler
     {
+
+        private BubbleHandler pointer;
+
+        public BubbleHandler getInstance()
+        {
+            if(pointer == null)
+            {
+                pointer = new BubbleHandler();
+            }
+            return pointer;
+        }
+
         public
         void createMemeFace(Image image, string imagePath)
         {

@@ -55,7 +55,7 @@
         </Image>
         <Popup x:Name="bubblePopup" PlacementTarget="{Binding ElementName=MemeFace}" Placement="Top" Width="200" Height="200" IsOpen="True" IsEnabled="True" >
             <StackPanel x:Name="bubbleStackPanel" Background="White">
-                
+
             </StackPanel>
         </Popup>
     </Grid>

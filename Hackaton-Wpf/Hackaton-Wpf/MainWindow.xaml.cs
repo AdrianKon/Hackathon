@@ -31,38 +31,54 @@ namespace Hackaton_Wpf
         //    this.Dispatcher.Invoke(() =>
         //    {
         //        textBlock.Text = "ba"; //update UI from diffrent thread
-                
+
         //    });
-            
+
         //}
+
+        MainWindow pointer;
+
+        public MainWindow getInstance()
+        {
+            return this;
+        }
 
         public MainWindow()
         {
+            doAfterConstructor();
+        }
 
+        public void doAfterConstructor() { 
             //textBlock.Text = "ab";
             //Thread thread = new Thread(KeyLogger.KeyLogger.MainThread);
             //thread.IsBackground = true;
             //thread.Start();
+            var x = 2;
+
+            BubbleHandler bubble = new BubbleHandler();
+            //ReactionManagement.ReactionManager reaction = new ReactionManagement.ReactionManager(5, this, bubble);
             InitializeComponent();
             //KeyLogger.KeyLogger.delegates += updateTextBlock;
             //MemeFace.ToolTip = "hello ya little sh";
 
 
-            TextBlock textBlock = new TextBlock();
+            //TextBlock textBlock = new TextBlock();
+            //bubble.createBubbleContentEvents( bubbleStackPanel ,@"C:\Users\mono\source\repos\Hackathon\Hackaton-Wpf\Hackaton-Wpf\Res\trollface.png", "BSOD's won the game");
+            //List<string> ans = new List<string>();
+            //ans.Add("good");
+            //ans.Add("ok");
+            //ans.Add("bad");
+            //ans.Add("w4 student");
 
-            BubbleHandler bubble = new BubbleHandler();
-            bubble.createBubbleContentEvents( bubbleStackPanel ,@"C:\Users\mono\source\repos\Hackathon\Hackaton-Wpf\Hackaton-Wpf\Res\trollface.png", "BSOD's won the game");
-            List<string> ans = new List<string>();
-            ans.Add("good");
-            ans.Add("ok");
-            ans.Add("bad");
-            ans.Add("w4 student");
-
-            //StackPanel stackPanel = new StackPanel();
-            //bubble.createBubble(bubblePopup, textBlock);
-            //bubble.createBubbleContentChoice( bubbleStackPanel,"How do you feel?", ans);
+            ////StackPanel stackPanel = new StackPanel();
+            ////bubble.createBubble(bubblePopup, textBlock);
+            ////bubble.createBubbleContentChoice( bubbleStackPanel,"How do you feel?", ans);
             
             bubble.createMemeFace(MemeFace, @"C:\Users\mono\source\repos\Hackathon\Hackaton-Wpf\Hackaton-Wpf\Res\trollface.png");
+
+            
+
+            //reaction.AwaitForUserReaction();
 
         }
     }

@@ -7,6 +7,7 @@ using System.Threading;
 using Hackaton_Wpf.Conversation.Shared;
 using Hackaton_Wpf.Conversation;
 using Hackathon;
+using System.Windows;
 
 namespace Hackaton_Wpf.ReactionManagement
 {
@@ -16,12 +17,16 @@ namespace Hackaton_Wpf.ReactionManagement
         private bool noReaction;
         private int botCheer;
         private Thread threadForTimer;
+        private BubbleHandler BubbleHandler;
+        private MainWindow window;
 
         public bool NoReaction { get => noReaction; set => noReaction = value; }
 
-        public ReactionManager(int delay)
+        public ReactionManager(int delay, MainWindow instance, BubbleHandler bubble)
         {
+            window = instance;
             this.delay = delay;
+            this.BubbleHandler = bubble;
         }
 
         public void AwaitForUserReaction()
@@ -34,10 +39,12 @@ namespace Hackaton_Wpf.ReactionManagement
                 endTime = beginTime.AddSeconds(delay);
                 while (NoReaction && DateTime.Now < endTime)
                 {
-                    if (!noReaction)
+                    if (DateTime.Now.ToBinary() % 10==0)
                     {
                         StartInteraction();
                         botCheer++;
+                        RandomMeme.MemeHandler randomMeme = new RandomMeme.MemeHandler();
+                        BubbleHandler.createBubbleContentEvents(window.bubbleStackPanel, randomMeme.GetRandomMeme(), "");
                     }
                 }
                 if (NoReaction)
